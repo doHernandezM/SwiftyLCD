@@ -8,11 +8,11 @@
 import Foundation
 
 public struct LCDData {
-    var rs: UInt8 = 0
-    var rw: UInt8 = 0
-    var e: UInt8 = 1
-    var led: UInt8 = 0
-    var data: UInt8 = 0xff
+    public var rs: UInt8 = 0
+    public var rw: UInt8 = 0
+    public var e: UInt8 = 1
+    public var led: UInt8 = 0
+    public var data: UInt8 = 0xff
     
     public init() {
     }
