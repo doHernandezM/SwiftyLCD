@@ -67,7 +67,7 @@ public class HD44780 {
     private var updateThread: Thread? = nil
     
     // Initialize the HD44780 with the specified width and height. If no data struct is provided, create a default one.
-    init(width: Int = 20, height: Int = 4, data: LCDData = LCDData(), loop:UInt32? = nil) {
+    public init(width: Int = 20, height: Int = 4, data: LCDData = LCDData(), loop:UInt32? = nil) {
         // Set the width and height of the display
         self.width = width
         self.height = height
