@@ -8,37 +8,7 @@
 import Foundation
 import SwiftyGPIO
 
-public struct LCDData {
-    var rs: UInt8 = 0
-    var rw: UInt8 = 0
-    var e: UInt8 = 1
-    var led: UInt8 = 0
-    var data: UInt8 = 0xff
-    
-    func lowNibbles() -> UInt8 {
-        var nibble: UInt8 = rs
-        nibble |= rw << 1
-        nibble |= e << 2
-        nibble |= led << 3
-        nibble |= (data & 0x0F) << 4
-        
-        return nibble
-    }
-    
-    func highNibble() -> UInt8 {
-        var nibble: UInt8 = rs
-        nibble |= rw << 1
-        nibble |= e << 2
-        nibble |= led << 3
-        nibble |= (data & 0xF0)
-        
-        return nibble
-    }
-    
-    static func assembleData(lowNibble: UInt8, highNibble: UInt8) -> UInt8 {
-        return (highNibble & 0xF0) | ((lowNibble & 0x0F) << 4)
-    }
-}
+
 
 //Bit 0: LCD_CLEAR
 // Command to clear the display and set DDRAM address to 0
@@ -82,7 +52,7 @@ private let LCD_DDRAM:Int = 7
 
 let i2c = SwiftyGPIO.hardwareI2Cs(for: .RaspberryPi3)![1]
 
- class HD44780 {
+public class HD44780 {
     public let width,height: Int
     private let maxColumn, maxRow: Int
     
@@ -97,7 +67,7 @@ let i2c = SwiftyGPIO.hardwareI2Cs(for: .RaspberryPi3)![1]
     private var updateThread: Thread? = nil
     
     // Initialize the HD44780 with the specified width and height. If no data struct is provided, create a default one.
-    public init(width: Int = 20, height: Int = 4, data: LCDData = LCDData(), loop:UInt32? = nil) {
+    init(width: Int = 20, height: Int = 4, data: LCDData = LCDData(), loop:UInt32? = nil) {
         // Set the width and height of the display
         self.width = width
         self.height = height
