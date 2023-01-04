@@ -8,7 +8,7 @@
 import Foundation
 import SwiftyGPIO
 
-struct LCDData {
+public struct LCDData {
     var rs: UInt8 = 0
     var rw: UInt8 = 0
     var e: UInt8 = 1
@@ -42,47 +42,47 @@ struct LCDData {
 
 //Bit 0: LCD_CLEAR
 // Command to clear the display and set DDRAM address to 0
-internal let LCD_CLEAR:Int = 0
+private let LCD_CLEAR:Int = 0
 
 //Bit 1: LCD_HOME
 // Command to set DDRAM address to 0 and return cursor to home position (upper-left corner of display)
-internal let LCD_HOME:Int = 1
+private let LCD_HOME:Int = 1
 
 //Bit 2: LCD_ENTRY_MODE
 // Flag for setting the cursor move direction and the display shift
 // LCD_ENTRY_INC: When writing to the display, increment the DDRAM address and shift the display to the right
-internal let LCD_ENTRY_MODE:Int = 2
-internal let LCD_ENTRY_INC:Int = 1
+private let LCD_ENTRY_MODE:Int = 2
+private let LCD_ENTRY_INC:Int = 1
 
 //Bit 3: LCD_DISPLAYMODE
 // Flag for turning the display, cursor, and cursor blink on and off
 // LCD_DISPLAYMODE_ON: Turn the display on
 // LCD_DISPLAYCONTROL_CURSOR: Turn the cursor on
 // LCD_DISPLAYCONTROL_BLINK: Turn the cursor blink on
-internal let LCD_DISPLAYMODE:Int = 3
-internal let LCD_DISPLAYMODE_ON:Int = 2
-internal let LCD_DISPLAYCONTROL_CURSOR:Int = 1
-internal let LCD_DISPLAYCONTROL_BLINK:Int = 0
+private let LCD_DISPLAYMODE:Int = 3
+private let LCD_DISPLAYMODE_ON:Int = 2
+private let LCD_DISPLAYCONTROL_CURSOR:Int = 1
+private let LCD_DISPLAYCONTROL_BLINK:Int = 0
 
 //Bit 4: LCD_CURSORDISPLAY
 // Flag for shifting the cursor and display
 // LCD_CURSORDISPLAY_MODE: Set the direction of the cursor move and display shift
 // LCD_CURSORDISPLAY_RL: Shift the display right and move the cursor right
-internal let LCD_CURSORDISPLAY:Int = 4
-internal let LCD_CURSORDISPLAY_MODE:Int = 3
-internal let LCD_CURSORDISPLAY_RL:Int = 2
+private let LCD_CURSORDISPLAY:Int = 4
+private let LCD_CURSORDISPLAY_MODE:Int = 3
+private let LCD_CURSORDISPLAY_RL:Int = 2
 
 //LED is connected to the PCFblankety blank.
-internal let LCD_Blink:Int = 3
+private let LCD_Blink:Int = 3
 
 //Bit 7: LCD_DDRAM
 // Flag for setting the DDRAM address (used when writing data to the display RAM)
-internal let LCD_DDRAM:Int = 7
+private let LCD_DDRAM:Int = 7
 
 
 let i2c = SwiftyGPIO.hardwareI2Cs(for: .RaspberryPi3)![1]
 
-class HD44780 {
+ class HD44780 {
     public let width,height: Int
     private let maxColumn, maxRow: Int
     
