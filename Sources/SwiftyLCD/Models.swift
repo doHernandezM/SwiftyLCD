@@ -14,6 +14,17 @@ public struct LCDData {
     var led: UInt8 = 0
     var data: UInt8 = 0xff
     
+    public init() {
+    }
+    
+    public init(rs: UInt8, rw: UInt8, e: UInt8, led: UInt8, data: UInt8) {
+        self.rs = rs
+        self.rw = rw
+        self.e = e
+        self.led = led
+        self.data = data
+    }
+    
     func lowNibbles() -> UInt8 {
         var nibble: UInt8 = rs
         nibble |= rw << 1
