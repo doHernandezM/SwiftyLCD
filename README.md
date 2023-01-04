@@ -10,16 +10,16 @@ To use SwiftyLCD, you will need to have the latest version of Swift and the Swif
 
 To use SwiftyLCD, you will need to initialize an instance of the HD44780 class with the width and height of your display.
 
-'''Swift
+```Swift
 let lcd = HD44780(width: 20, height: 4)
-'''
+```
 You can then use the provided methods to control the display, such as clear(), home(), and print(x:y:string:).
 
-'''Swift
+```Swift
 lcd.clear()
 lcd.home()
 lcd.print(x: 0, y: 0, string: "Hello, world!")
-'''
+```
 
 ### Contributing
 
