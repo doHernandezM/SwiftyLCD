@@ -66,7 +66,9 @@ public class HD44780 {
     //Poller tank devices for status
     private var updateThread: Thread? = nil
     
-    var debug = true
+    private var debug = true
+    
+    public var movements: [moveDirection] = []
     
     // Initialize the HD44780 with the specified width and height. If no data struct is provided, create a default one.
     public init(width: Int = 20, height: Int = 4, data: LCDData = LCDData(), loop:UInt32? = nil) {
@@ -142,12 +144,13 @@ public class HD44780 {
     private func updateDisplay() {
         
         while true {
-            self.moveDisplayString(.right)
-            self.moveDisplayString(.down)
-            self.moveDisplayString(.right)
             
+            for movement in movements {
+                self.moveDisplayString(movement)
+            }
             
-            if self.debug {Swift.print(" -------------------- ")}
+            if debug {Swift.print("\n")}
+            if self.debug {Swift.print(" ---–----------------- ")}
             for (i, displayedStringRow) in self.displayedStrings.enumerated() {
                 var rowString = ""
                 for string in displayedStringRow {
@@ -155,10 +158,9 @@ public class HD44780 {
                 }
                 if debug {Swift.print("|\(rowString)|")}
                 self.print(y: i, string: rowString)
-                usleep(100)
+//                usleep(100)
             }
             if debug {Swift.print(" -------------------- ")}
-            if debug {Swift.print("\n")}
             sleep(self.loop!)
             
         }
