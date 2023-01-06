@@ -86,10 +86,14 @@ public class HD44780 {
         //
         self.loop = loop
         
+        
         // Create an empty 2D array of strings with the specified width and height
         BLANK_STRING_ARRAY_BUFFER = [[String]](repeating: [String](repeating: " ", count: width), count: height)
         displayedStrings = resetStringBuffer()
         
+        startDisplay()
+    }
+    public func startDisplay() {
         // Set the register select and read/write values to 0 and wait 15ms
         self.data.rs = 0
         self.data.rw = 0
