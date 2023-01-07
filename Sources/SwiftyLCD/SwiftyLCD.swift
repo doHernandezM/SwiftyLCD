@@ -66,7 +66,7 @@ public class HD44780 {
     //Poller tank devices for status
     private var updateThread: Thread? = nil
     
-    private var debug = true
+    public var debug = true
     
     public var movements: [moveDirection] = []
     
@@ -154,7 +154,7 @@ public class HD44780 {
             }
             
             if debug {Swift.print("\n")}
-            if self.debug {Swift.print(" ---–----------------- ")}
+            if debug {Swift.print(" -------------------- ")}
             for (i, displayedStringRow) in self.displayedStrings.enumerated() {
                 var rowString = ""
                 for string in displayedStringRow {
@@ -162,7 +162,7 @@ public class HD44780 {
                 }
                 if debug {Swift.print("|\(rowString)|")}
                 self.print(y: i, string: rowString)
-//                usleep(100)
+                usleep(10)
             }
             if debug {Swift.print(" -------------------- ")}
             sleep(self.loop!)
