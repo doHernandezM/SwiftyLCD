@@ -27,4 +27,4 @@ We welcome contributions to SwiftyLCD. If you have a bug fix or feature request,
 
 ### License
 
-SwiftyLCD is licensed under the MIT License. See the LICENSE file for more information.
+SwiftyLCD is licensed under the Apache 2.0 license. See the LICENSE file for more information.
